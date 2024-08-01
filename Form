@@ -1,0 +1,68 @@
+
+<html>
+
+<head>
+  <title>Form Validation</title>
+  <link rel="stylesheet" href="Form style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div>
+      <form name="myForm" onsubmit="return validate()">
+      <fieldset>
+         <legend>Sign up</legend>
+          Username<br><input type="text" placeholder="Username" id="user"><br>
+          Password<br><input type="password" placeholder="Password" id="password"><br>
+          Email<br><input type="text" placeholder="Email" id="email"><br>
+          DOB<br><input type="date" placeholder="DOB" id="dob"><br>
+          <input type="submit" value="Submit"><br>
+        </fieldset>
+      </form>
+    </div>
+    <script>
+      function validate() {
+        var username = document.myForm.user.value;
+        if (username === "") {
+          alert("Please Enter the Username");
+          document.myForm.user.focus();
+          return false;
+        }
+
+        var password = document.myForm.password.value;
+        if (password === "") {
+          alert("Please Enter the Password");
+          document.myForm.password.focus();
+          return false;
+        }
+
+        var email = document.myForm.email.value;
+        if (!validateEmail(email)) {
+          document.myForm.email.focus();
+          return false;
+        }
+
+        var dob = document.myForm.dob.value;
+        if (dob === "") {
+          alert("Please Enter the Date of Birth");
+          document.myForm.dob.focus();
+          return false;
+        }
+
+        return true;
+      }
+
+      function validateEmail(email) {
+        var atpos = email.indexOf("@");
+        var dotpos = email.lastIndexOf(".");
+        if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= email.length) {
+          alert("Please Enter a valid Email ID");
+          return false;
+        }
+        return true;
+      }
+    </script>
+  </div>
+</body>
+
+</html>
